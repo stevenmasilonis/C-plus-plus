@@ -14,7 +14,7 @@ int main()
     double creditHours;
     char decision = '1';
     string grade;
-    double credit;
+    double credit = 0;
     double creditHourstotal = 0;
      cout << "Input total OSU credits completed";
      cin >> creditCount;
@@ -28,22 +28,17 @@ int main()
      if (answer == '1') {
          cout << "Enter your classes one by one\n";
          cout << "Starting with credit hours of said class\n";
-         while (decision == '1') {
-             cout << "Enter credit hours:";
+         while (decision != '0') {
+             cout << "Enter credit hours\n";
              cin >> creditHours;
              creditHourstotal = creditHourstotal + creditHours;
-             //creditCountSemester = creditCountSemester + creditHours;
-             cout << "Enter grade";
+             cout << "Enter grade\n";
              cin >> grade;
              char letterGrade = grade[0];
              char sign = grade[1];
              switch(letterGrade) {
                  case 'A': {
                      switch(sign) {
-                         case '+': {
-                            credit = 4; 
-                            break;
-                         }
                          case '-': {
                              credit = 3.7;
                              break;
@@ -57,7 +52,7 @@ int main()
                  case'B': {
                     switch(sign) {
                          case '+': {
-                            credit = 3; 
+                            credit = 3.3; 
                             break;
                          }
                          case '-': {
@@ -94,10 +89,6 @@ int main()
                             credit = 1.3; 
                             break;
                          }
-                         case '-': {
-                             credit = 0.7;
-                             break;
-                         }
                          case '\0': {
                              credit = 1;
                              break;
@@ -108,8 +99,11 @@ int main()
                     break;
                  }
                 }
+               
              }
+                 
                  creditCountSemester = creditCountSemester + credit * creditHours;
+                 cout << creditCountSemester << " / " << creditHourstotal;
                  cout << "Enter '0' to indicate you have added all of your classes\n";
                  cout << "Otherwise enter anything\n";
                  cin >> decision;
