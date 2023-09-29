@@ -3,38 +3,45 @@
 #include <iostream>
 
 using namespace std;
-
+double getGrade(string input);
 int main()
 
     {
-    double creditCount;
-    double creditCountSemester = 0;
-    double cumGPA;
-    char answer;
-    double creditHours;
-    char decision = '1';
-    string grade;
-    double credit = 0;
-    double creditHourstotal = 0;
-     cout << "Input total OSU credits completed";
-     cin >> creditCount;
-     cout << "Input cumulative GPA";
-     cin >> cumGPA;
-     double creditCountTotal = cumGPA * creditCount;
-     cout << "What would you like to do?\n";
-     cout << "Calculate semester GPA and new cumulative type in '1'\n";
-     cout << "Calculate minimum GPA needed type in '2'\n";
-     cin >> answer;
-     if (answer == '1') {
-         cout << "Enter your classes one by one\n";
-         cout << "Starting with credit hours of said class\n";
-         while (decision != '0') {
-             cout << "Enter credit hours\n";
-             cin >> creditHours;
-             creditHourstotal = creditHourstotal + creditHours;
-             cout << "Enter grade\n";
-             cin >> grade;
-             char letterGrade = grade[0];
+        double creditEarned, cumGPA, grade, creditHours, gradeXhours, newGPA;
+        string s;
+        bool yesOrno = true;
+        cout << "How many credits have you completed at osu\n";
+        cin >> creditEarned;
+        cout << "Enter cumulative gpa\n";
+        cin >> cumGPA;
+        gradeXhours = cumGPA * creditEarned;
+        
+        while (yesOrno == true) {
+            cout << "Enter class grade\n";
+            cin >> s;
+            grade = getGrade(s);
+            cout << "Enter this class's credit hours\n";
+            cin >> creditHours;
+            
+            gradeXhours = gradeXhours + grade * creditHours;
+            creditEarned = creditEarned + creditHours;
+            
+            cout << "Enter 0 to stop";
+            cin >> yesOrno;
+            
+        
+        }
+        
+        newGPA = gradeXhours / creditEarned;
+        cout << newGPA;
+        
+        
+    return 0;
+         }
+         
+    double getGrade(string grade) {
+        double credit = 0;
+        char letterGrade = grade[0];
              char sign = grade[1];
              switch(letterGrade) {
                  case 'A': {
@@ -99,21 +106,6 @@ int main()
                     break;
                  }
                 }
-               
              }
-                 
-                 creditCountSemester = creditCountSemester + credit * creditHours;
-                 cout << creditCountSemester << " / " << creditHourstotal;
-                 cout << "Enter '0' to indicate you have added all of your classes\n";
-                 cout << "Otherwise enter anything\n";
-                 cin >> decision;
-         }
-         }
-         cout << creditCountSemester / creditHourstotal;
-         creditCount = creditCount + creditHourstotal;
-         creditCountTotal = creditCountSemester + creditCountTotal;
-         cout << creditCountTotal / creditCountSemester;
-     
-
-    return 0;
-         }
+        return credit;
+    }
