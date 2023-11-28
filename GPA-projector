@@ -17,8 +17,15 @@ int main()
         gradeXhours = cumGPA * creditEarned;
         
         while (yesOrno == true) {
-            cout << "Enter class grade\n";
+            cout << "Enter class grade (use capital letters and +/-)\n";
             cin >> s;
+            while ((s != "A") && (s != "A-") && (s != "B+") && (s != "B") &&
+            (s != "B-") && (s != "C+") && (s != "C") && (s != "C-") &&
+            (s != "D+") && (s != "D") && (s != "F")) {
+                
+           cout << "Invalid input try again. NOTE: use capital letter grades\n";
+            cin >> s;
+        }
             grade = getGrade(s);
             cout << "Enter this class's credit hours\n";
             cin >> creditHours;
@@ -26,7 +33,7 @@ int main()
             gradeXhours = gradeXhours + grade * creditHours;
             creditEarned = creditEarned + creditHours;
             
-            cout << "Enter 0 to stop";
+            cout << "Enter 0 to stop\n";
             cin >> yesOrno;
             
         
